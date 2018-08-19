@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Image Guess</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        /*set a margin of 20px between the images*/
+        img {
+            margin: 20px;
+        }
+    </style>
+    <script>
+        // we can't get the image from the DOM until the page gets fully loaded
+        // so assign the function init to the onload event handler
+        window.onload = init;
+
+        function init() {
+            // // create a local variable that refers to the image object
+            // let image = document.getElementById("zero");
+            // // assign a handler to the image's onclick property
+            // image.onclick = showAnswer;
+
+            // takes a tag name and returns a list of elements that match it
+            let images = document.getElementsByTagName("img");
+            for (let i = 0; i < images.length; i++) {
+                // set the onclick property of each image object to the showAnswer click handler
+                images[i].onclick = showAnswer;
+
+                // alternatively, set the onmouseover property to the showAnswer click handler
+                // this lets us hover over a blurred image to reveal its clear version
+                // images[i].onmouseover = showAnswer;
+
+                // reblur the image once the mouse leaves it
+                // images[i].onmouseout = blurAnswer;
+            }
+        }
+
+        // this function gets passed an event object each time an image is clicked on
+        function showAnswer(eventObj) {
+            // // get the image from the DOM again
+            // let image = document.getElementById("zero");
+            // // set the src property of the image object to the unblurred image
+            // image.src = "zero.jpg";
+
+            // the event object's target property is a reference to the image element object that was clicked on
+            let image = eventObj.target;
+
+            // access the id property of the image object to get the name of the unblurred image
+            let name = image.id;
+            name = name + ".jpg";
+            // set the source of the image to that name
+            image.src = "images/" + name;
+
+            //pass the above image as an argument to the blurAnswer handler through the setTimeout function
+            setTimeout(blurAnswer, 2000, image);
+
+
+        }
+
+        // take an arbitrary image as its argument and set its source to the name of a blurred image
+        function blurAnswer(image) {
+            // the id does not have a .jpg extension
+            let name = image.id;
+            name = name + "blur.jpg";
+            image.src = "images/" + name;
+        }
+
+        // function for the onmouseout property
+        // function blurAnswer(eventObj) {
+        //     let image = eventObj.target;
+        //     // the id does not have a .jpg extension
+        //     let name = image.id;
+        //     name = name + "blur.jpg";
+        //     image.src = name;
+        // }
+
+
+    </script>
+</head>
+<body>
+<img id="zero" src="images/zeroblur.jpg">
+<img id="one" src="images/oneblur.jpg">
+<img id="two" src="images/twoblur.jpg">
+<img id="three" src="images/threeblur.jpg">
+<img id="four" src="images/fourblur.jpg">
+<img id="five" src="images/fiveblur.jpg">
+</body>
+</head>
+</html>

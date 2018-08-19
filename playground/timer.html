@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timer</title>
+    <script>
+
+        // window.onload = init;
+        // function init() {
+        function timerHandler() {
+            alert("I got called after 5 seconds!");
+        }
+
+        // don't call the timerHandler function directly. tell setTimeout what handler to call by
+        // passing it a reference to the handler function.
+        // setTimeout is a method of the window object
+        // it creates a time event that will be generated in 5000 milliseconds.
+        // when the time event happens, the handler function will be executed by the browser
+
+        setTimeout(timerHandler, 5000);
+
+        // setInterval calls it EVERY five seconds.
+        // setInterval(timerHandler, 5000);
+    </script>
+</head>
+<body>
+<h1>Hello!</h1>
+</body>
+</html>
